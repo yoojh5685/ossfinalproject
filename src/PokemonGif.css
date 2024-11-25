@@ -1,0 +1,23 @@
+.pokemon-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 150px;
+  text-align: center;
+}
+
+.rotating-image {
+  width: 100px;
+  height: 100px;
+  animation: rotate 2s linear infinite; /* 회전 애니메이션 */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
