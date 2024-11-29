@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Test from './Test'
 import PokemonList from './PokemonList';
@@ -6,8 +6,9 @@ import Router from './shared/Router';
 function App() {
   return (
     <>
-      <Test/>
-      <PokemonList/>
+      {/* <Test/> */}
+      {/* <PokemonList/> */}
+      
       <Router/>
     </>
   );
