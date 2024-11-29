@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import './PokemonGif.css'; // CSS 파일을 불러옴
+import './PokemonGif.css'; // CSS 파일을 불러옴
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
