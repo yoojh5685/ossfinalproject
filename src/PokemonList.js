@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './PokemonGif.css'; // CSS 파일을 불러옴
+// import './PokemonGif.css'; // CSS 파일을 불러옴
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
     // 포켓몬 리스트 가져오기
-    axios.get('https://pokeapi.co/api/v2/pokemon?limit=100')
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=1010')
       .then(response => {
         setPokemonList(response.data.results);
       })
