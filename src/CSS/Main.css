@@ -1,0 +1,78 @@
+/* 전체 레이아웃 */
+.container {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #333333;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* 설명 텍스트 */
+.description {
+  margin: 20px 0;
+  font-size: 14px;
+  background-color: #fce4ec;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  color: #555555;
+}
+
+/* 버튼 스타일 */
+.button {
+  margin: 20px 0;
+  background-color: #e53935;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 참여자 수 섹션 */
+.count-section {
+  margin: 20px 0;
+  color: #ffffff;
+}
+
+.count-label {
+  font-size: 16px;
+  color: #c1c1c1;
+}
+
+.count {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff5722;
+}
+
+
+.pokemon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 포켓몬 카드 간격 */
+  margin-top: 20px;
+}
