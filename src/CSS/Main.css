@@ -69,6 +69,10 @@
 }
 
 
-Link{
-  color : black;
+.pokemon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 포켓몬 카드 간격 */
+  margin-top: 20px;
 }

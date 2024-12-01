@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../CSS/Main.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
-  const [count, setCount] = useState(0); // 참여자 수 상태
+  const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
+  // 파이리, 꼬부기, 피카츄 데이터 하드코딩
   const pokemonList = [
     { name: '파이리', id: 4 },
     { name: '꼬부기', id: 7 },
@@ -14,7 +15,7 @@ export default function Main() {
 
   const buttonClicked = () => {
     setCount(count + 1);
-    navigate('/survey1'); // '/survey1' 페이지로 이동
+    navigate('/survey1');
   };
 
   return (
@@ -31,7 +32,7 @@ export default function Main() {
         <div className="count-label">참여자 수</div> 
         <div className="count">{count}</div>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <div className="pokemon-container">
         {pokemonList.map((pokemon) => (
           <div
             key={pokemon.name}
@@ -40,7 +41,8 @@ export default function Main() {
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
-              className="rotating-image" 
+              className="pokemon-image rotating-image"  
+
             />
             <p>{pokemon.name}</p>
           </div>
