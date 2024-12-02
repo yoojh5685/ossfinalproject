@@ -23,12 +23,13 @@ export default function Survey1() {
       <br/>
 
       <h2>포켓몬이 대학에 왔다!</h2>
-      <p className='page'>1/7</p>
+      <p className='page'>1/8</p>
       <br/><br/>
 
 
       <div class="line2">
   <div class="part red"></div>
+  <div class="part"></div>
   <div class="part"></div>
   <div class="part"></div>
   <div class="part"></div>
