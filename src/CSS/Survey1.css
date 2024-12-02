@@ -22,12 +22,29 @@
     background-color: #e53935;
 }
 
+.line1 {
+    border: 1px solid red;
 
-hr {
-  border: 1px solid red;
 }
 
-h1, p {
+.line2 {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .part {
+    width: 14.28%; /* 100% ÷ 7 */
+    height: 2px;
+    background-color: rgb(188, 185, 185);
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+
+h2, p {
   display: inline-block;
   margin: 0;
 }
@@ -40,7 +57,7 @@ p {
     color: darkgray;
 }
 
-h2 {
+h3 {
   margin: 20px 0;
 }
 
@@ -64,6 +81,7 @@ h2 {
 
 .button {
   margin: 50px;
+  margin-top: 50px;
   padding: 10px 20px;
   background-color: #e53935;
   color: white;
