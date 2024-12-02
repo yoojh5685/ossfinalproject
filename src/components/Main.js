@@ -73,7 +73,7 @@ export default function Main() {
               alt={pokemon.name}
               className="pokemon-image rotating-image"  
             />
-            <p>{pokemon.name}</p>
+            {/* <p>{pokemon.name}</p> */}
           </div>
         ))}
       </div>
