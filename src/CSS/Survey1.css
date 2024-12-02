@@ -1,0 +1,77 @@
+.container {
+    position: relative; /* 버튼을 container 내에서 위치시키기 위해 상대적 위치 지정 */
+}
+
+.backbutton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    background: none;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    font-size: 25px;
+}
+
+
+
+.backbutton :hover{
+    background-color: #e53935;
+}
+
+
+hr {
+  border: 1px solid red;
+}
+
+h1, p {
+  display: inline-block;
+  margin: 0;
+}
+
+p {
+  margin-left: 10px;
+}
+
+.page {
+    color: darkgray;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+.pokemon-images {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pokemon-images img {
+  width: auto;
+  height: 185px;
+  margin-top: 50px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+  margin: 50px;
+  padding: 10px 20px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #d32f2f;
+}
