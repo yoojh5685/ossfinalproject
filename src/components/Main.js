@@ -18,6 +18,36 @@ export default function Main() {
     navigate('/survey1');
   };
 
+
+  const shareButton = async () => {
+    try {
+      if (navigator.share) {
+
+        document.getElementById("share-btn").disabled = true;
+  
+        await navigator.share({
+          title: '😈전공 포켓몬 추천 서비스🔴\n전공도 타입이 있다고?  나랑 맞는 포켓몬은?',
+          text: '',
+          url: 'https://oss-class3-team1.vercel.app/',
+        });
+  
+        alert("공유가 완료되었습니다!");
+      } else {
+        alert("공유하기가 지원되지 않는 환경입니다.");
+      }
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log("공유가 취소되었습니다."); // 사용자 취소 처리
+      } else {
+        console.error("공유 중 오류 발생:", error.message);
+        alert("공유 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    } finally {
+
+      document.getElementById("share-btn").disabled = false;
+    }
+  };
+
   return (
     <div className="container">
       <h1 className="title">포켓몬이 <br /> 대학에 왔다!</h1>
@@ -36,18 +66,20 @@ export default function Main() {
         {pokemonList.map((pokemon) => (
           <div
             key={pokemon.name}
-            className="pokemon-card"
+
           >
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
               className="pokemon-image rotating-image"  
-
             />
             <p>{pokemon.name}</p>
           </div>
         ))}
       </div>
+
+      <button id="share-btn" className="button" onClick={shareButton}> 공유하기 </button>     
+
     </div>
   );
 }
