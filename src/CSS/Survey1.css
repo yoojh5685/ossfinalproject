@@ -1,16 +1,5 @@
 .container {
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  background-color: #e0e0e0;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 50px auto;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  background-image: url('https://c.wallhere.com/photos/60/d0/1920x1200_px_anime_Pixel_Art_Pixels_pokemon_Pok_mon_Trainers-1244675.jpg!d');
-  background-size: cover; /* 이미지 크기를 container에 맞게 조정 */
-  background-position: top left;
-  /* background-position: calc(100% + 70px) top; 오른쪽에서 20px 왼쪽으로 이동 */
+  position: relative; /* 버튼을 container 내에서 위치시키기 위해 상대적 위치 지정 */
 }
 
 .backbutton {
@@ -30,77 +19,77 @@
 
 
 .backbutton :hover{
-    background-color: #e53935;
+  background-color: #e53935;
 }
 
 .line1 {
-    border: 1px solid red;
+  border: 1px solid red;
 
 }
 
 .line2 {
-    display: flex;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  
-  .part {
-    width: 14.28%; /* 100% ÷ 7 */
-    height: 2px;
-    background-color: rgb(188, 185, 185);
-  }
-  
-  .red {
-    background-color: red;
-  }
-  
+  display: flex;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.part {
+  width: 14.28%; /* 100% ÷ 7 */
+  height: 2px;
+  background-color: rgb(188, 185, 185);
+}
+
+.red {
+  background-color: red;
+}
+
 
 h2, p {
-  display: inline-block;
-  margin: 0;
+display: inline-block;
+margin: 0;
 }
 
 p {
-  margin-left: 10px;
+margin-left: 10px;
 }
 
 .page {
-    color: rgb(65, 62, 62);
+  color: darkgray;
 }
 
 h3 {
-  margin: 20px 0;
+margin: 20px 0;
 }
 
 .pokemon-images {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
 .pokemon-images img {
-  width: auto;
-  height: 185px;
-  margin-top: 50px;
+width: auto;
+height: 185px;
+margin-top: 50px;
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
 }
 
 .button {
-  margin: 50px;
-  margin-top: 50px;
-  padding: 10px 20px;
-  background-color: #e53935;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+margin: 50px;
+margin-top: 50px;
+padding: 10px 20px;
+background-color: #e53935;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
 }
 
 .button:hover {
-  background-color: #d32f2f;
+background-color: #d32f2f;
 }
