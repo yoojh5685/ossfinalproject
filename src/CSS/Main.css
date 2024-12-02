@@ -8,6 +8,10 @@
   max-width: 400px;
   margin: 50px auto;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-image: url('https://c.wallhere.com/photos/60/d0/1920x1200_px_anime_Pixel_Art_Pixels_pokemon_Pok_mon_Trainers-1244675.jpg!d');
+  background-size: cover; /* 이미지 크기를 container에 맞게 조정 */
+  background-position: top left;
+  /* background-position: calc(100% + 70px) top; 오른쪽에서 20px 왼쪽으로 이동 */
 }
 
 /* 제목 스타일 */
