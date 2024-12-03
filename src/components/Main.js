@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../CSS/Main.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 export default function Main() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState();
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  // 사용자수 보여주기 
+  useEffect( ()=> {
+    const userData = async () => {
+      try {
+        const response = await axios.get(
+          'https://674c853a54e1fca9290cd1ff.mockapi.io/User'
+        );
+          setCount(response.data.length);
+      } catch(error) {
+        setError(error.message);
+      }
+    };
+
+    userData();
+  },[]);
+
+
+
 
   // 파이리, 꼬부기, 피카츄 데이터 하드코딩
   const pokemonList = [
@@ -55,7 +77,6 @@ export default function Main() {
         한동에 포켓몬이 출현했다고? <br />
         나의 전공공부를 도와줄 포켓몬을 찾아봐요
       </div>
-      
       <button className="button" onClick={buttonClicked}>
         포켓몬 찾으러 가기
       </button>
@@ -72,7 +93,7 @@ export default function Main() {
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
-              className="pokemon-image rotating-image"
+              className="pokemon-image rotating-image"  
             />
             {/* <p>{pokemon.name}</p> */}
           </div>
