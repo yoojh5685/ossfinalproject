@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../CSS/Main.css';
+import styles from '../CSS/Main.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -71,20 +71,21 @@ export default function Main() {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">포켓몬이 <br /> 대학에 왔다!</h1>
-      <div className="description">
+    <div className={styles.container}>
+      <h1 className={styles.title}>포켓몬이 <br /> 대학에 왔다!</h1>
+      <div className={styles.description}>
         한동에 포켓몬이 출현했다고? <br />
         나의 전공공부를 도와줄 포켓몬을 찾아봐요
       </div>
-      <button className="button" onClick={buttonClicked}>
+      
+      <button className={styles.button} onClick={buttonClicked}>
         포켓몬 찾으러 가기
       </button>
-      <div className="count-section">
-        <div className="count-label">참여자 수</div> 
-        <div className="count">{count}</div>
+      <div className={styles.countSection}>
+        <div className={styles.countLabel}>참여자 수</div> 
+        <div className={styles.count}>{count}</div>
       </div>
-      <div className="pokemon-container">
+      <div className={styles.pokemonContainer}>
         {pokemonList.map((pokemon) => (
           <div
             key={pokemon.name}
@@ -93,7 +94,7 @@ export default function Main() {
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
-              className="pokemon-image rotating-image"  
+              className={styles.pokemon}   
             />
             {/* <p>{pokemon.name}</p> */}
           </div>
