@@ -49,21 +49,21 @@ export default function Main() {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>포켓몬이 <br /> 대학에 왔다!</h1>
-      <div className={styles.description}>
+    <div className="container">
+      <h1 className="title">포켓몬이 <br /> 대학에 왔다!</h1>
+      <div className="description">
         한동에 포켓몬이 출현했다고? <br />
         나의 전공공부를 도와줄 포켓몬을 찾아봐요
       </div>
       
-      <button className={styles.button} onClick={buttonClicked}>
+      <button className="button" onClick={buttonClicked}>
         포켓몬 찾으러 가기
       </button>
-      <div className={styles.countSection}>
-        <div className={styles.countLabel}>참여자 수</div> 
-        <div className={styles.count}>{count}</div>
+      <div className="count-section">
+        <div className="count-label">참여자 수</div> 
+        <div className="count">{count}</div>
       </div>
-      <div className={styles.pokemonContainer}>
+      <div className="pokemon-container">
         {pokemonList.map((pokemon) => (
           <div
             key={pokemon.name}
@@ -72,7 +72,7 @@ export default function Main() {
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
-              className={styles.pokemon}   
+              className="pokemon-image rotating-image"
             />
             {/* <p>{pokemon.name}</p> */}
           </div>
