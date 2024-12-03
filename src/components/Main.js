@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../CSS/Main.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 export default function Main() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState();
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  // 사용자수 보여주기 
+  useEffect( ()=> {
+    const userData = async () => {
+      try {
+        const response = await axios.get(
+          'https://674c853a54e1fca9290cd1ff.mockapi.io/User'
+        );
+          setCount(response.data.length);
+      } catch(error) {
+        setError(error.message);
+      }
+    };
+
+    userData();
+  },[]);
+
+
+
 
   // 파이리, 꼬부기, 피카츄 데이터 하드코딩
   const pokemonList = [
@@ -73,7 +95,7 @@ export default function Main() {
               alt={pokemon.name}
               className="pokemon-image rotating-image"  
             />
-            <p>{pokemon.name}</p>
+            {/* <p>{pokemon.name}</p> */}
           </div>
         ))}
       </div>
