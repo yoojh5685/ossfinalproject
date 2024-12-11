@@ -10,7 +10,7 @@ export default function Result() {
   const location = useLocation();
 
   const [pokemon, setPokemon] = useState(null);
-  const { major, pokemonId } = location.state || {}; // 전달된 데이터 받기
+  const { major, pokemonId } = location.state || {}; 
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
