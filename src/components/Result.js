@@ -42,7 +42,7 @@ export default function Result() {
   }, []);
 
   const moveToType = () => {
-    navigate('/result_pokeList');
+    navigate('/result_pokeList', {state : {major,pokemonId}});
   };
 
   const goBack = () => {
@@ -51,7 +51,7 @@ export default function Result() {
 
 
   const moveToUser = () => {
-    navigate('/result_userList');
+    navigate('/result_userList', {state : {major,pokemonId}});
   };
 
   return (

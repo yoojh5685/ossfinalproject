@@ -1,12 +1,19 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import axios
-  from 'axios';
+import axios from 'axios';
+import { Location, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 export default function ResultPokeList() {
 
   const [pokemonList, setPokemonList] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { major, pokemonId } = location.state || {}; 
 
 
+  const goBack = () => {
+    navigate('/result', {state: {major, pokemonId}}); 
+  };
 
   useEffect(() => {
 
@@ -23,6 +30,7 @@ export default function ResultPokeList() {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <button className="backbutton" onClick={goBack}> &lt; </button>
     {pokemonList.map((pokemon, index) => (
       <div
         key={pokemon.name}

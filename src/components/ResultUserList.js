@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Location } from 'react-router-dom';
 export default function ResultUserList() {
   const [error, setError] = useState(null);
   const [users, setUser] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { major, pokemonId } = location.state || {}; 
 
   useEffect(() => {
     const userData = async () => {
@@ -22,7 +25,7 @@ export default function ResultUserList() {
   }, []);
 
   const goBack = () => {
-    navigate('/main');
+    navigate('/result', {state : {major,pokemonId}});
   };
 
 
