@@ -1,45 +1,33 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Location, useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-export default function ResultPokeList() {
+import { useLocation, useNavigate } from 'react-router-dom';
 
+export default function ResultPokeList() {
   const [pokemonList, setPokemonList] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { major, pokemonId } = location.state || {};
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-
-  const goBack = () => {
-    navigate('/result', { state: { major, pokemonId } });
-  };
-
-  // useEffect(() => {
-
-  //   axios.get('https://pokeapi.co/api/v2/pokemon?limit=30')
-  //   // axios.get('https://pokeapi.co/api/v2/language/3')
-  //     .then(response => {
-  //       setPokemonList(response.data.results);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching the Pokémon list:', error);
-  //     });
-  // }, []);
 
   const types = [
     "normal", "fire", "water", "electric", "grass", "ice",
     "fighting", "poison", "ground", "flying", "psychic", "bug",
     "rock", "ghost", "dragon", "dark", "steel", "fairy"
   ];
-  
+
+  const goBack = () => {
+    navigate('/result', { state: { major, pokemonId } });
+  };
+
   const fetchPokemonByType = async (type) => {
     try {
       setLoading(true);
       const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
-      const pokemon = response.data.pokemon.map((p) => p.pokemon.name); // 포켓몬 이름만 추출
+      const pokemon = response.data.pokemon.map((p) => ({
+        name: p.pokemon.name,
+        url: p.pokemon.url,
+      }));
       setPokemonList(pokemon);
     } catch (error) {
       setError(error.message);
@@ -48,31 +36,55 @@ export default function ResultPokeList() {
     }
   };
 
+  const getPokemonIdFromUrl = (url) => {
+    const parts = url.split('/');
+    return parts[parts.length - 2]; // URL에서 ID 추출
+  };
+
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+    <div style={{ textAlign: 'center' }}>
       <button className="backbutton" onClick={goBack}> &lt; </button>
 
-      <div>
-    {types.map((type) => (
-      <button key={type} onClick={() => fetchPokemonByType(type)}>
-        {type.charAt(0).toUpperCase() + type.slice(1)} 타입
-      </button>
-    ))}
-  </div>
+      <div style={{ margin: '20px 0' }}>
+        {types.map((type) => (
+          <button
+            key={type}
+            onClick={() => fetchPokemonByType(type)}
+            style={{ margin: '5px', padding: '10px', cursor: 'pointer' }}
+          >
+            {type.charAt(0).toUpperCase() + type.slice(1)} 타입
+          </button>
+        ))}
+      </div>
 
-      {pokemonList.map((pokemon, index) => (
-        <div
-          key={pokemon.name}
-          className="pokemon-card"
-        >
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
-            alt={pokemon.name}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
 
-          />
-          <p>{pokemon.name}</p>
-        </div>
-      ))}
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {pokemonList.map((pokemon) => {
+          const id = getPokemonIdFromUrl(pokemon.url); // URL에서 ID 추출
+          return (
+            <div
+              key={pokemon.name}
+              style={{
+                border: '1px solid #ccc',
+                borderRadius: '10px',
+                padding: '10px',
+                margin: '10px',
+                textAlign: 'center',
+                width: '150px',
+              }}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                alt={pokemon.name}
+                style={{ width: '100px', height: '100px' }}
+              />
+              <p>{pokemon.name}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
