@@ -1,14 +1,49 @@
-import React from 'react'
-import "../CSS/Result.css"
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import "../CSS/Result.css";
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+import axios from 'axios';
+
 export default function Result() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [pokemon, setPokemon] = useState(null);
+  const { major, pokemonId } = location.state || {}; // 전달된 데이터 받기
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [poketData ,setPoketData] = useState(1);
+
+
+
+  // API에서 랜덤 포켓몬 데이터 가져오기
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      try {
+        setLoading(true);
+        const randomId = poketData; // 이 값을 바꿔서 포켓몬 다르게 뜨게 하기 
+        console.log (pokemonId);
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
+          
+        );
+        setPokemon(response.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPokemon();
+  }, []);
 
   const moveToType = () => {
     navigate('/result_pokeList');
   };
-
-  
 
   const moveToUser = () => {
     navigate('/result_userList');
@@ -16,20 +51,36 @@ export default function Result() {
 
   return (
     <div>
-      <div className ='resultContainer'>
-        <div> 포켓몬이 대학에 왔다</div>
-        <img/>
-
-        <div> 포켓몬 설명  </div>
-        <div> 전공 설명  </div>
-        
-        <div> 
-          <button onClick={moveToType}>타입별로 보기 </button>
-          <button onClick={moveToUser}>user 보기 </button>
+      <div className="resultContainer">
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+        {pokemon && (
+          <>
+            <div>포켓몬이 대학에 왔다</div>
+            <img
+              src={pokemon.sprites.front_default}
+              alt={pokemon.name}
+              className="pokemonImage"
+            />
+            <div>
+              <strong>{pokemon.name}</strong> - ID: {pokemon.id}
+            </div>
+            <div>
+              <strong>Type:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
+            </div>
+            <div>
+              <strong>Height:</strong> {pokemon.height}
+            </div>
+            <div>
+              <strong>Weight:</strong> {pokemon.weight}
+            </div>
+          </>
+        )}
+        <div>
+          <button onClick={moveToType}>타입별로 보기</button>
+          <button onClick={moveToUser}>user 보기</button>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
-
