@@ -45,6 +45,11 @@ export default function Result() {
     navigate('/result_pokeList');
   };
 
+  const goBack = () => {
+    navigate('/major'); 
+  };
+
+
   const moveToUser = () => {
     navigate('/result_userList');
   };
@@ -52,6 +57,7 @@ export default function Result() {
   return (
     <div>
       <div className="resultContainer">
+      <button className="backbutton" onClick={goBack}> &lt; </button>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         {pokemon && (

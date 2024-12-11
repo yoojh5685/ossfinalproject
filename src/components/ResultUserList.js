@@ -1,44 +1,52 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 export default function ResultUserList() {
   const [error, setError] = useState(null);
-  const [users,setUser] = useState([]);
-  useEffect( ()=> {
+  const [users, setUser] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
     const userData = async () => {
       try {
         const response = await axios.get(
           'https://674c853a54e1fca9290cd1ff.mockapi.io/User'
-        );  
-          setUser(response.data);
-      } catch(error) {
+        );
+        setUser(response.data);
+      } catch (error) {
         setError(error.message);
       }
     };
 
     userData();
-  },[]);
+  }, []);
 
+  const goBack = () => {
+    navigate('/main');
+  };
 
 
   return (
     <div>
       <div>
+        <button className="backbutton" onClick={goBack}> &lt; </button>
         {error && <p>Error: {error}</p>}
-        {users.length > 0 ? (
-          <ul>
-            {users.map((user) => (
-              <li key={user.id}>
 
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              <div >
                 <strong>전공:</strong> {user.major} <br />
                 <strong>ID:</strong> {user.id} <br />
-                <hr />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Loading...</p>
-        )}
+              </div>
+              <button>수정하기</button>
+              <button>삭제하기</button>
+              <hr />
+
+            </li>
+          ))}
+        </ul>
+
       </div>
     </div>
   )
