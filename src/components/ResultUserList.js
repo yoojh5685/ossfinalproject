@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Location } from 'react-router-dom';
+
 export default function ResultUserList() {
   const [error, setError] = useState(null);
   const [users, setUser] = useState([]);
@@ -28,6 +28,15 @@ export default function ResultUserList() {
     navigate('/result', {state : {major,pokemonId}});
   };
 
+  const deleteButtonClicked = async(id) => {
+    try{
+
+      await axios.delete('https://674c853a54e1fca9290cd1ff.mockapi.io/User/'+id)
+      setUser(users.filter((user) => user.id !== id));
+    }catch (error){
+      setError(error.message);
+    }
+  }
 
   return (
     <div>
@@ -43,7 +52,7 @@ export default function ResultUserList() {
                 <strong>ID:</strong> {user.id} <br />
               </div>
               <button>수정하기</button>
-              <button>삭제하기</button>
+              <button onClick={()=>deleteButtonClicked(user.id)}>삭제하기</button>
               <hr />
 
             </li>
