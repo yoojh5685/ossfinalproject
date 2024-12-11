@@ -24,7 +24,7 @@ export default function Result() {
     const fetchPokemon = async () => {
       try {
         setLoading(true);
-        const randomId = poketData; // 이 값을 바꿔서 포켓몬 다르게 뜨게 하기 
+
         console.log (pokemonId);
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
@@ -69,7 +69,7 @@ export default function Result() {
               className="pokemonImage"
             />
             <div>
-              <strong>{pokemon.name}</strong> - ID: {pokemon.id}
+              <strong>{pokemon.name}</strong> 
             </div>
             <div>
               <strong>Type:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
