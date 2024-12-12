@@ -1,13 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import '../../CSS/Survey5.css'
 
 
 export default function Survey5() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const surveyData = location.state || {};
 
-  const buttonClicked = () => {
-    navigate('/survey6');
+  const buttonClicked = (value) => {
+    const updateSurveyData = { ...surveyData, survey5: value };
+    console.log(updateSurveyData);
+    navigate('/survey6',{state: updateSurveyData});
   };
 
   const goBack = () => {
@@ -50,15 +54,15 @@ export default function Survey5() {
 
 
       <div className="buttons5">
-        <button className="button5" onClick={buttonClicked}>CU</button>
-        <button className="button5" onClick={buttonClicked}>GS25</button>
-        <button className="button5" onClick={buttonClicked}>맘스</button>
-        <button className="button5" onClick={buttonClicked}>학관</button>
-        <button className="button5" onClick={buttonClicked}>라운지</button>
-        <button className="button5" onClick={buttonClicked}>예소드</button>
-        <button className="button5" onClick={buttonClicked}>버거킹</button>
-        <button className="button5" onClick={buttonClicked}>명성</button>
-        <button className="button5" onClick={buttonClicked}>샐러디</button>
+        <button className="button5" onClick={()=>buttonClicked(1)}>CU</button>
+        <button className="button5" onClick={()=>buttonClicked(2)}>GS25</button>
+        <button className="button5" onClick={()=>buttonClicked(3)}>맘스</button>
+        <button className="button5" onClick={()=>buttonClicked(4)}>학관</button>
+        <button className="button5" onClick={()=>buttonClicked(5)}>라운지</button>
+        <button className="button5" onClick={()=>buttonClicked(6)}>예소드</button>
+        <button className="button5" onClick={()=>buttonClicked(7)}>버거킹</button>
+        <button className="button5" onClick={()=>buttonClicked(8)}>명성</button>
+        <button className="button5" onClick={()=>buttonClicked(9)}>샐러디</button>
       </div>
   
     </div>

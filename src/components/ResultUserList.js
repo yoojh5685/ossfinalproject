@@ -49,6 +49,10 @@ export default function ResultUserList() {
 
   const deleteButtonClicked = async (id) => {
     try {
+      const confirmDelete = window.confirm('정말로 삭제하시겠습니까?');
+    if (!confirmDelete) {
+      return; 
+    }
       await axios.delete('https://674c853a54e1fca9290cd1ff.mockapi.io/User/' + id)
       setUser(users.filter((user) => user.id !== id));
     } catch (error) {
@@ -73,7 +77,7 @@ export default function ResultUserList() {
       const updatedMajorId = majors[selectedMajor];
       const response = await axios.put(
         `https://674c853a54e1fca9290cd1ff.mockapi.io/User/${selectedUserId}`,
-        { major: selectedMajor, majorId: updatedMajorId }
+        { major: selectedMajor }
       );
 
       // 상태 업데이트
@@ -86,18 +90,13 @@ export default function ResultUserList() {
       );
 
       closeModal(); // 모달 닫기
+      alert("수정되었습니다.")
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const editButtonClicked = async(id) => {
-    try{
-      await axios.put('https://674c853a54e1fca9290cd1ff.mockapi.io/User/' + id)
-    }catch(error){
-      setError(error.message);
-    }
-  }
+  
 
 
 
@@ -117,6 +116,7 @@ export default function ResultUserList() {
             <li key={user.id}>
               <div >
                 <strong>전공:</strong> {user.major} <br />
+                <strong>닉네임:</strong> {user.nickname} <br />
                 <strong>ID:</strong> {user.id} <br />
 
               </div>

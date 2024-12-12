@@ -1,13 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import '../../CSS/Survey4.css'
 
 
 export default function Survey4() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const surveyData = location.state || {};
 
-  const buttonClicked = () => {
-    navigate('/survey5');
+  const buttonClicked = (value) => {
+    const updateSurveyData = { ...surveyData, survey4: value };
+    console.log(updateSurveyData);
+    navigate('/survey5',{state: updateSurveyData});
   };
 
   const goBack = () => {
@@ -50,9 +54,9 @@ export default function Survey4() {
 
 
       <div className="buttons4">
-        <button className="button4" onClick={buttonClicked}>나한테 잘해주는데 평판이 진짜 별로인 트레이너</button>
+        <button className="button4" onClick={()=>buttonClicked(1)}>나한테 잘해주는데 평판이 진짜 별로인 트레이너</button>
         
-        <button className="button4" onClick={buttonClicked}>내 앞에서는 진짜 어색한데 다른 사람한테는 엄청 잘해주는 트레이너</button>
+        <button className="button4" onClick={()=>buttonClicked(2)}>내 앞에서는 진짜 어색한데 다른 사람한테는 엄청 잘해주는 트레이너</button>
       </div>
   
     </div>

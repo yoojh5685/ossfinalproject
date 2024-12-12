@@ -1,15 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import '../../CSS/Major.css'
 
 
 export default function Major() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const surveyData = location.state || {};
 
   const buttonClicked = (major) => {
     const pokemonId = majors[major];
 
-    navigate('/result', {state: {major, pokemonId}});
+    navigate('/result', {state: {major, pokemonId,surveyData}});
   };
 
   const goBack = () => {

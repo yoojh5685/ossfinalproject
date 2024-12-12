@@ -1,13 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import '../../CSS/Survey6.css'
 
 
 export default function Survey6() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const surveyData = location.state || {};
 
-  const buttonClicked = () => {
-    navigate('/survey7');
+  const buttonClicked = (value) => {
+    const updateSurveyData = { ...surveyData, survey6: value };
+    console.log(updateSurveyData);
+    navigate('/survey7',{state: updateSurveyData});
   };
 
   const goBack = () => {
@@ -50,9 +54,9 @@ export default function Survey6() {
 
 
       <div className="buttons2">
-        <button className="button2" onClick={buttonClicked}>어쩌다가? 야 근데 그거 계절에 하는게 훨씬 좋데.</button>
+        <button className="button2" onClick={()=>buttonClicked(1)}>어쩌다가? 야 근데 그거 계절에 하는게 훨씬 좋데.</button>
         
-        <button className="button2" onClick={buttonClicked}>헐.. 어떡해 속상하다 ㅠㅠ </button>
+        <button className="button2" onClick={()=>buttonClicked(2)}>헐.. 어떡해 속상하다 ㅠㅠ </button>
       </div>
   
     </div>

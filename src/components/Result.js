@@ -10,13 +10,12 @@ export default function Result() {
   const location = useLocation();
 
   const [pokemon, setPokemon] = useState(null);
-  const { major, pokemonId } = location.state || {};
+  const { major, pokemonId,surveyData} = location.state || {};
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pokemonKoreanName, setPokemonKoreanName] = useState('');
-
-
+  const [nickname, setNickname] = useState('');
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -63,6 +62,25 @@ export default function Result() {
     navigate('/result_userList', { state: { major, pokemonId } });
   };
 
+  const postData = () => {
+    const Data = {
+      ...surveyData,
+      major,
+      nickname,
+    };
+
+    axios.post('https://674c853a54e1fca9290cd1ff.mockapi.io/User', Data)
+    .then(response => {
+      alert("성공적으로 추가되었습니다.")
+      console.log('Data submitted successfully:', response.data);
+  })
+    .catch(error => {
+      console.error('Error submitting data:', error);
+    })
+  };
+
+
+
   return (
     <div>
       <div className="resultContainer">
@@ -78,7 +96,7 @@ export default function Result() {
               className="pokemonImage"
             />
             <div>
-              <strong>{pokemonKoreanName }</strong>
+              <strong>{pokemonKoreanName}</strong>
             </div>
             <div>
               <strong>Type:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
@@ -89,6 +107,17 @@ export default function Result() {
             <div>
               <strong>Weight:</strong> {pokemon.weight}
             </div>
+
+            <div>
+              <label>닉네임 :  </label>
+              <input 
+                type="text"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+
+              />
+            </div>
+            <button onClick={postData}>내 정보 저장하기 </button>
           </>
         )}
         <div>

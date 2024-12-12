@@ -1,13 +1,16 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import '../../CSS/Survey7.css'
 
 
 export default function Survey7() {
   const navigate = useNavigate();
-
-  const buttonClicked = () => {
-    navigate('/major');
+  const location = useLocation();
+  const surveyData = location.state || {};
+  const buttonClicked = (value) => {
+    const updateSurveyData = { ...surveyData, survey7: value };
+    console.log(updateSurveyData);
+    navigate('/major',{state: updateSurveyData});
   };
 
   const goBack = () => {
@@ -50,9 +53,9 @@ export default function Survey7() {
 
 
       <div className="buttons7">
-        <button className="button7" onClick={buttonClicked}>아 갑자기….? 피곤하다고 거절한다. .</button>
+        <button className="button7" onClick={()=>buttonClicked(1)}>아 갑자기….? 피곤하다고 거절한다. .</button>
         
-        <button className="button7" onClick={buttonClicked}>엇.. 내가 오늘 할게 얼마나 있지? 오늘 당장해야하는게 있나? 아 없나? 그럼 그냥 나가야겠다! </button>
+        <button className="button7" onClick={()=>buttonClicked(2)}>엇.. 내가 오늘 할게 얼마나 있지? 오늘 당장해야하는게 있나? 아 없나? 그럼 그냥 나가야겠다! </button>
       </div>
   
     </div>
