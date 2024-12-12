@@ -89,12 +89,13 @@ export default function Result() {
   return (
     <div>
       <div className="resultContainer">
-        <button className="backbutton" onClick={goBack}> &lt; </button>
+        <button className="backButton" onClick={goBack}> &lt; </button>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         {pokemon && (
           <>
-            <div>포켓몬이 대학에 왔다</div>
+            
+            <h2>포켓몬이 대학에 왔다</h2>
             <img
               src={pokemon.sprites.front_default}
               alt={pokemonKoreanName}
@@ -118,15 +119,16 @@ export default function Result() {
               <input 
                 type="text"
                 value={nickname}
+                placeholder='닉네임을 입력해주세요'
                 onChange={(e) => setNickname(e.target.value)}
 
               />
             </div>
-           
+            <button onClick={postData}>내 정보 저장하기 </button>
           </>
         )}
         <div>
-          <button onClick={postData}>내 정보 저장하기 </button>
+         
           <button onClick={moveToType}>타입별로 보기</button>
           <button onClick={moveToUser}>user 보기</button>
           <button onClick={moveToMain}>처음으로</button>

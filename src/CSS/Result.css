@@ -6,6 +6,20 @@
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-image: url('https://c.wallhere.com/photos/60/d0/1920x1200_px_anime_Pixel_Art_Pixels_pokemon_Pok_mon_Trainers-1244675.jpg!d');
+    background-size: cover; /* 이미지 크기를 container에 맞게 조정 */
+    background-position: top left;
+    /* background-position: calc(100% + 70px) top; 오른쪽에서 20px 왼쪽으로 이동 */
+
   text-align: center;
 }
 
@@ -50,6 +64,21 @@ h1 {
   font-size: 24px;
   margin-bottom: 20px;
   color: #222;
+}
+
+
+.backButton {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  padding: 5px 10px;
+  background: none;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  font-size: 25px;
 }
 
 .typeContainer,
@@ -100,6 +129,21 @@ h1 {
     padding: 8px 10px;
     max-width: 200px;
   }
+
+
+.backbutton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  background: none;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  font-size: 25px;
+}
 
   .pokemonImage {
     max-width: 120px;
