@@ -8,7 +8,7 @@ export default function ResultPokeList() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { major, pokemonId } = location.state || {};
+  const { major, pokemonId ,surveyData} = location.state || {};
   const [pokemonKoreanName, setPokemonKoreanName] = useState([]);
   const [filter, setFilter] = useState(''); // 검색 필터 상태
 
