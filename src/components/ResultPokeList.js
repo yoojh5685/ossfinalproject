@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styles from '../CSS/ResultPokeList.module.css'
+
+
 
 export default function ResultPokeList() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -80,8 +83,9 @@ export default function ResultPokeList() {
   );
 
   return (
+    <div className={styles.container}>
     <div style={{ textAlign: 'center' }}>
-      <button className="backbutton" onClick={goBack}> &lt; </button>
+      <button className={styles.backButton} onClick={goBack}> &lt; </button>
 
 
 
@@ -127,6 +131,7 @@ export default function ResultPokeList() {
                 border: '1px solid #ccc',
                 borderRadius: '10px',
                 padding: '10px',
+                backgroundColor: 'white',
                 margin: '10px',
                 textAlign: 'center',
                 width: '150px',
@@ -143,6 +148,7 @@ export default function ResultPokeList() {
           );
         })}
       </div>
+    </div>
     </div>
   );
 }
