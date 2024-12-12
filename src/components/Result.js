@@ -62,6 +62,11 @@ export default function Result() {
     navigate('/result_userList', { state: { major, pokemonId } });
   };
 
+  
+  const moveToMain = () => {
+    navigate('/')
+  }
+
   const postData = () => {
     const Data = {
       ...surveyData,
@@ -84,35 +89,32 @@ export default function Result() {
   return (
     <div>
       <div className="resultContainer">
-        <button className="backbutton" onClick={goBack}> &lt; </button>
+        <button className="backButton" onClick={goBack}> &lt; </button>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         {pokemon && (
           <>
-            <div>포켓몬이 대학에 왔다</div>
+            
+            <h2>포켓몬이 대학에 왔다</h2>
             <img
               src={pokemon.sprites.front_default}
               alt={pokemonKoreanName}
               className="pokemonImage"
             />
             <div>
-              <strong>{pokemonKoreanName}</strong>
+              <h3>{pokemonKoreanName}</h3>
             </div>
             <div>
-              <strong>Type:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
+              <strong>타입:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
             </div>
-            <div>
-              <strong>Height:</strong> {pokemon.height}
-            </div>
-            <div>
-              <strong>Weight:</strong> {pokemon.weight}
-            </div>
+            
 
             <div>
-              <label>닉네임 :  </label>
+              <label> 닉네임:  </label>
               <input 
                 type="text"
                 value={nickname}
+                placeholder='닉네임을 입력해주세요'
                 onChange={(e) => setNickname(e.target.value)}
 
               />
@@ -121,8 +123,10 @@ export default function Result() {
           </>
         )}
         <div>
+         
           <button onClick={moveToType}>타입별로 보기</button>
           <button onClick={moveToUser}>user 보기</button>
+          <button onClick={moveToMain}>처음으로</button>
         </div>
       </div>
     </div>
