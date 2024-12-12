@@ -1,13 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import '../../CSS/Survey3.css'
 
 
 export default function Survey3() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const surveyData = location.state || {};
 
-  const buttonClicked = () => {
-    navigate('/survey4');
+  const buttonClicked = (value) => {
+    const updateSurveyData = { ...surveyData, survey3: value };
+    console.log(updateSurveyData);
+    navigate('/survey4',{state: updateSurveyData});
   };
 
   const goBack = () => {
@@ -50,10 +54,10 @@ export default function Survey3() {
 
 
       <div className="buttons2">
-        <button className="button2" onClick={buttonClicked}>톡톡튀는 사람들이 모여있데! 에벤에셀로 간다.</button>
-        <button className="button2" onClick={buttonClicked}>우락부락한 사람들이 모여있데! 코너스톤으로 간다.</button>
-        <button className="button2" onClick={buttonClicked}>빠릿빠릿한 사람들이 모여있데! 뉴턴으로 간다.</button>
-        <button className="button2" onClick={buttonClicked}>반짝반짝한 사람들이 모여있데! 느헤미아로 간다.</button>
+        <button className="button2" onClick={()=>buttonClicked(1)}>톡톡튀는 사람들이 모여있데! 에벤에셀로 간다.</button>
+        <button className="button2" onClick={()=>buttonClicked(2)}>우락부락한 사람들이 모여있데! 코너스톤으로 간다.</button>
+        <button className="button2" onClick={()=>buttonClicked(3)}>빠릿빠릿한 사람들이 모여있데! 뉴턴으로 간다.</button>
+        <button className="button2" onClick={()=>buttonClicked(4)}>반짝반짝한 사람들이 모여있데! 느헤미아로 간다.</button>
       </div>
   
     </div>

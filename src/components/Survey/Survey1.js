@@ -1,49 +1,64 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../CSS/Survey1.css';
+import { useState } from 'react';
 
 export default function Survey1() {
   const navigate = useNavigate();
+  const [surveyData, setSurveyData] = useState({
+    survey1: 0,
+    survey2: 0,
+    survey3: 0,
+    survey4: 0,
+    survey5: 0,
+    survey6: 0,
+    survey7: 0,
+  });
 
-  const buttonClicked = () => {
-    navigate('/survey2');
+  const buttonClicked = (value) => {
+    const updateSurveyData = {...surveyData, survey1: value};
+    setSurveyData(updateSurveyData);
+    console.log(updateSurveyData);
+    navigate('/survey2',{state: updateSurveyData});
   };
 
   const goBack = () => {
     navigate('/'); // Main.js로 이동
   };
 
+  
+
   return (
     <div className="container">
       <button className="backbutton" onClick={goBack}> &lt; </button>
       <p>방석 연구소</p>
-      <br/>
+      <br />
 
       <hr className="line1" />
-      <br/>
+      <br />
 
       <h2>포켓몬이 대학에 왔다!</h2>
       <p className='page'>1/8</p>
-      <br/><br/>
+      <br /><br />
 
 
       <div class="line2">
-  <div class="part red"></div>
-  <div class="part"></div>
-  <div class="part"></div>
-  <div class="part"></div>
-  <div class="part"></div>
-  <div class="part"></div>
-  <div class="part"></div>
-  <div class="part"></div>
-</div>
+        <div class="part red"></div>
+        <div class="part"></div>
+        <div class="part"></div>
+        <div class="part"></div>
+        <div class="part"></div>
+        <div class="part"></div>
+        <div class="part"></div>
+        <div class="part"></div>
+      </div>
 
       <h3>TA세션이 열린다고 한다.<br /> 내가 원하는 타입의 포켓몬은?</h3>
 
       <div className="pokemon-images">
         <img
           src="https://i.namu.wiki/i/GHdxsPKY0wDHKKlWr12EzZGk84qWZWlGA7agxm-IIS53EB4lHMMokzUiOtrnvbVLdzxaeKQPBVP64PB8pI03qA.webp"
-          alt="든든한 포켓몬"          
+          alt="든든한 포켓몬"
         />
         <img
           src="https://i.namu.wiki/i/YkAjBtBUK5eD0tQRClNjPavlldgT3eJcQfBQZShRW1D1eHru9SdhDRFKcX_nwexJoYQGQztZijWhz1dz50vsng.webp"
@@ -55,8 +70,8 @@ export default function Survey1() {
 
 
       <div className="buttons">
-        <button className="button" onClick={buttonClicked}>버튼 1</button>
-        <button className="button" onClick={buttonClicked}>버튼 2</button>
+        <button className="button" onClick={() => buttonClicked(1)}>버튼 1</button>
+        <button className="button" onClick={() => buttonClicked(2)}>버튼 2</button>
       </div>
     </div>
   );
