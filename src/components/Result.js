@@ -10,27 +10,36 @@ export default function Result() {
   const location = useLocation();
 
   const [pokemon, setPokemon] = useState(null);
-  const { major, pokemonId } = location.state || {}; 
+  const { major, pokemonId } = location.state || {};
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const [poketData ,setPoketData] = useState(1);
-
+  const [pokemonKoreanName, setPokemonKoreanName] = useState('');
 
 
-  // API에서 랜덤 포켓몬 데이터 가져오기
+
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
         setLoading(true);
-
-        console.log (pokemonId);
+        console.log(pokemonId);
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
-          
+
         );
         setPokemon(response.data);
+        const speciesResponse = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
+        );
+        const koreanNameEntry = speciesResponse.data.names.find(
+          (name) => name.language.name === 'ko'
+        );
+        if (koreanNameEntry) {
+          setPokemonKoreanName(koreanNameEntry.name);
+        } else {
+          setPokemonKoreanName('이름 없음');
+        }
+
       } catch (error) {
         setError(error.message);
       } finally {
@@ -42,22 +51,22 @@ export default function Result() {
   }, []);
 
   const moveToType = () => {
-    navigate('/result_pokeList', {state : {major,pokemonId}});
+    navigate('/result_pokeList', { state: { major, pokemonId } });
   };
 
   const goBack = () => {
-    navigate('/major'); 
+    navigate('/major');
   };
 
 
   const moveToUser = () => {
-    navigate('/result_userList', {state : {major,pokemonId}});
+    navigate('/result_userList', { state: { major, pokemonId } });
   };
 
   return (
     <div>
       <div className="resultContainer">
-      <button className="backbutton" onClick={goBack}> &lt; </button>
+        <button className="backbutton" onClick={goBack}> &lt; </button>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         {pokemon && (
@@ -65,11 +74,11 @@ export default function Result() {
             <div>포켓몬이 대학에 왔다</div>
             <img
               src={pokemon.sprites.front_default}
-              alt={pokemon.name}
+              alt={pokemonKoreanName}
               className="pokemonImage"
             />
             <div>
-              <strong>{pokemon.name}</strong> 
+              <strong>{pokemonKoreanName }</strong>
             </div>
             <div>
               <strong>Type:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}

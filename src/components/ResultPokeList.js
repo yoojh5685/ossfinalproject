@@ -9,6 +9,8 @@ export default function ResultPokeList() {
   const navigate = useNavigate();
   const location = useLocation();
   const { major, pokemonId } = location.state || {};
+  const [pokemonKoreanName, setPokemonKoreanName] = useState([]);
+
 
   const types = [
     "normal", "fire", "water", "electric", "grass", "ice",
@@ -24,11 +26,37 @@ export default function ResultPokeList() {
     try {
       setLoading(true);
       const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
-      const pokemon = response.data.pokemon.map((p) => ({
-        name: p.pokemon.name,
-        url: p.pokemon.url,
-      }));
-      setPokemonList(pokemon);
+      const pokemonData = response.data.pokemon;
+  
+      // ID 추출 및 한국어 이름 가져오기
+      const updatedPokemonList = await Promise.all(
+        pokemonData.map(async (p) => {
+          const id = getPokemonIdFromUrl(p.pokemon.url);
+          try {
+            const speciesResponse = await axios.get(
+              `https://pokeapi.co/api/v2/pokemon-species/${id}`
+            );
+            const koreanNameEntry = speciesResponse.data.names.find(
+              (name) => name.language.name === 'ko'
+            );
+            return {
+              name: p.pokemon.name,
+              url: p.pokemon.url,
+              id,
+              koreanName: koreanNameEntry ? koreanNameEntry.name : '이름 없음', // 한국어 이름
+            };
+          } catch {
+            return {
+              name: p.pokemon.name,
+              url: p.pokemon.url,
+              id,
+              koreanName: '이름 없음', // 실패 시 기본값
+            };
+          }
+        })
+      );
+  
+      setPokemonList(updatedPokemonList); // 타입별 포켓몬 리스트 저장
     } catch (error) {
       setError(error.message);
     } finally {
@@ -62,7 +90,8 @@ export default function ResultPokeList() {
 
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {pokemonList.map((pokemon) => {
-          const id = getPokemonIdFromUrl(pokemon.url); // URL에서 ID 추출
+          const id = getPokemonIdFromUrl(pokemon.url);
+
           return (
             <div
               key={pokemon.name}
@@ -77,10 +106,11 @@ export default function ResultPokeList() {
             >
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-                alt={pokemon.name}
+                alt={pokemon.koreanName || pokemon.name}
                 style={{ width: '100px', height: '100px' }}
               />
-              <p>{pokemon.name}</p>
+              {/* <p>{pokemon.koreanName || pokemon.name}</p> */}
+
             </div>
           );
         })}
