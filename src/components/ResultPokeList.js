@@ -10,6 +10,7 @@ export default function ResultPokeList() {
   const location = useLocation();
   const { major, pokemonId } = location.state || {};
   const [pokemonKoreanName, setPokemonKoreanName] = useState([]);
+  const [filter, setFilter] = useState(''); // 검색 필터 상태
 
 
   const types = [
@@ -27,7 +28,7 @@ export default function ResultPokeList() {
       setLoading(true);
       const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
       const pokemonData = response.data.pokemon;
-  
+
       // ID 추출 및 한국어 이름 가져오기
       const updatedPokemonList = await Promise.all(
         pokemonData.map(async (p) => {
@@ -55,7 +56,7 @@ export default function ResultPokeList() {
           }
         })
       );
-  
+
       setPokemonList(updatedPokemonList); // 타입별 포켓몬 리스트 저장
     } catch (error) {
       setError(error.message);
@@ -69,9 +70,21 @@ export default function ResultPokeList() {
     return parts[parts.length - 2]; // URL에서 ID 추출
   };
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value.toLowerCase());
+  };
+
+  // 입력값에 따라 포켓몬 필터링
+  const filteredPokemonList = pokemonList.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(filter)
+  );
+
   return (
     <div style={{ textAlign: 'center' }}>
       <button className="backbutton" onClick={goBack}> &lt; </button>
+
+
+
 
       <div style={{ margin: '20px 0' }}>
         {types.map((type) => (
@@ -85,11 +98,26 @@ export default function ResultPokeList() {
         ))}
       </div>
 
+      <div style={{ margin: '20px 0' }}>
+        <input
+          type="text"
+          placeholder="포켓몬 이름 검색"
+          value={filter}
+          onChange={handleFilterChange} // 입력값 변경 시 상태 업데이트
+          style={{
+            padding: '10px',
+            width: '300px',
+            borderRadius: '5px',
+            border: '1px solid #ccc',
+          }}
+        />
+      </div>    
+
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {pokemonList.map((pokemon) => {
+        {filteredPokemonList.map((pokemon) => {
           const id = getPokemonIdFromUrl(pokemon.url);
 
           return (
@@ -106,10 +134,10 @@ export default function ResultPokeList() {
             >
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-                alt={pokemon.koreanName || pokemon.name}
+                alt={pokemon.name}
                 style={{ width: '100px', height: '100px' }}
               />
-              {/* <p>{pokemon.koreanName || pokemon.name}</p> */}
+              <p>{pokemon.name}</p>
 
             </div>
           );
