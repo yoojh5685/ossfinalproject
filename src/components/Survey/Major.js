@@ -8,14 +8,15 @@ export default function Major() {
   const location = useLocation();
   const surveyData = location.state || {};
 
+
   const buttonClicked = (major) => {
     const pokemonId = majors[major];
-
-    navigate('/result', {state: {major, pokemonId,surveyData}});
+    console.log(surveyData)
+    navigate('/result', {state: {surveyData,major, pokemonId}});
   };
 
   const goBack = () => {
-    navigate('/survey7'); // survey4로 이동
+    navigate('/survey7',{state:surveyData}); // survey4로 이동
   };
 
 

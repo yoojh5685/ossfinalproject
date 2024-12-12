@@ -8,7 +8,7 @@ export default function ResultUserList() {
   const [users, setUser] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { major, pokemonId } = location.state || {};
+  const { major, pokemonId,surveyData } = location.state || {};
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
 

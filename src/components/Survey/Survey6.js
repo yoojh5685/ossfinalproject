@@ -15,7 +15,7 @@ export default function Survey6() {
   };
 
   const goBack = () => {
-    navigate('/survey5'); // survey5로 이동
+    navigate('/survey5', {state : surveyData}); // survey5로 이동
   };
 
   return (

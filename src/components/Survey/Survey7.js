@@ -7,14 +7,15 @@ export default function Survey7() {
   const navigate = useNavigate();
   const location = useLocation();
   const surveyData = location.state || {};
+
   const buttonClicked = (value) => {
     const updateSurveyData = { ...surveyData, survey7: value };
     console.log(updateSurveyData);
-    navigate('/major',{state: updateSurveyData});
+    navigate('/major',{state: {...updateSurveyData}});
   };
 
   const goBack = () => {
-    navigate('/survey6'); // survey6로 이동
+    navigate('/survey6', {state : surveyData}); // survey6로 이동
   };
 
   return (
