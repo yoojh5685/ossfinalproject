@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from './Modal'; 
+import styles from '../CSS/ResultUserList.module.css';
+
+
 
 export default function ResultUserList() {
   const [error, setError] = useState(null);
@@ -96,45 +99,38 @@ export default function ResultUserList() {
     }
   };
 
-  
-
-
-
-
-
-
-
-
   return (
-    <div>
-      <div>
-        <button className="backbutton" onClick={goBack}> &lt; </button>
-        {error && <p>Error: {error}</p>}
+    <div className={styles.container}>
+      <button className={styles.backbutton} onClick={goBack}>
+        &lt;
+      </button>
+      {error && <p>Error: {error}</p>}
 
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              <div >
-                <strong>전공:</strong> {user.major} <br />
-                <strong>닉네임:</strong> {user.nickname} <br />
-                <strong>ID:</strong> {user.id} <br />
+      <ul>
+        {users.map((user) => (
+          <li key={user.id} className={styles.userCard}>
+            <div>
+              <strong>전공:</strong> {user.major} <br />
+              <strong>닉네임:</strong> {user.nickname} <br />
+              <strong>ID:</strong> {user.id} <br />
+            </div>
+            <button onClick={() => openModal(user.id)} className={styles.button}>
+              수정하기
+            </button>
+            <button onClick={() => deleteButtonClicked(user.id)} className={styles.button}>
+              삭제하기
+            </button>
+          </li>
+        ))}
+      </ul>
 
-              </div>
-              <button onClick={() => openModal(user.id)}>수정하기</button>
-              <button onClick={() => deleteButtonClicked(user.id)}>삭제하기</button>
-              <hr />
-
-            </li>
-          ))}
-        </ul>
-
-        <Modal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onSelect={handleMajorSelect}
-          majors={majors}
-        />
-      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onSelect={handleMajorSelect}
+        majors={majors}
+        className={styles.modal}
+      />
     </div>
-  )
+  );
 }

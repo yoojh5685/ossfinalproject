@@ -164,7 +164,7 @@ input {
 
 /* input focus 상태 스타일 */
 input:focus {
-  border-color: #007bff; /* 포커스 시 테두리 색 변경 */
+  border-color: #e53935; /* 포커스 시 테두리 색 변경 */
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5); /* 포커스 시 외곽선 효과 */
   outline: none; /* 기본 outline 제거 */
 }
