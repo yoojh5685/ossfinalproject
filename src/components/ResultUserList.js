@@ -49,6 +49,10 @@ export default function ResultUserList() {
 
   const deleteButtonClicked = async (id) => {
     try {
+      const confirmDelete = window.confirm('정말로 삭제하시겠습니까?');
+    if (!confirmDelete) {
+      return; 
+    }
       await axios.delete('https://674c853a54e1fca9290cd1ff.mockapi.io/User/' + id)
       setUser(users.filter((user) => user.id !== id));
     } catch (error) {
@@ -91,13 +95,7 @@ export default function ResultUserList() {
     }
   };
 
-  const editButtonClicked = async(id) => {
-    try{
-      await axios.put('https://674c853a54e1fca9290cd1ff.mockapi.io/User/' + id)
-    }catch(error){
-      setError(error.message);
-    }
-  }
+  
 
 
 
