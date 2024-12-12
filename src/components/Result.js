@@ -62,6 +62,11 @@ export default function Result() {
     navigate('/result_userList', { state: { major, pokemonId } });
   };
 
+  
+  const moveToMain = () => {
+    navigate('/')
+  }
+
   const postData = () => {
     const Data = {
       ...surveyData,
@@ -117,12 +122,14 @@ export default function Result() {
 
               />
             </div>
-            <button onClick={postData}>내 정보 저장하기 </button>
+           
           </>
         )}
         <div>
+          <button onClick={postData}>내 정보 저장하기 </button>
           <button onClick={moveToType}>타입별로 보기</button>
           <button onClick={moveToUser}>user 보기</button>
+          <button onClick={moveToMain}>처음으로</button>
         </div>
       </div>
     </div>
