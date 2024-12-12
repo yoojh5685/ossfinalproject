@@ -61,4 +61,18 @@ export default function Survey1() {
           alt="든든한 포켓몬"
         />
         <img
-          src="https://i.namu.wiki/i/YkAjBtBUK5eD0tQRClNj
+          src="https://i.namu.wiki/i/YkAjBtBUK5eD0tQRClNjPavlldgT3eJcQfBQZShRW1D1eHru9SdhDRFKcX_nwexJoYQGQztZijWhz1dz50vsng.webp"
+          alt="지적인 포켓몬"
+        />
+      </div>
+      <p>든든한 포켓몬</p>
+      <p>지적인 포켓몬</p>
+
+
+      <div className="buttons">
+        <button className="button" onClick={() => buttonClicked(1)}>버튼 1</button>
+        <button className="button" onClick={() => buttonClicked(2)}>버튼 2</button>
+      </div>
+    </div>
+  );
+}
