@@ -102,20 +102,15 @@ export default function Result() {
               className="pokemonImage"
             />
             <div>
-              <strong>{pokemonKoreanName}</strong>
+              <h3>{pokemonKoreanName}</h3>
             </div>
             <div>
-              <strong>Type:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
+              <strong>타입:</strong> {pokemon.types.map((t) => t.type.name).join(', ')}
             </div>
-            <div>
-              <strong>Height:</strong> {pokemon.height}
-            </div>
-            <div>
-              <strong>Weight:</strong> {pokemon.weight}
-            </div>
+            
 
             <div>
-              <label>닉네임 :  </label>
+              <label> 닉네임:  </label>
               <input 
                 type="text"
                 value={nickname}
