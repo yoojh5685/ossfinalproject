@@ -1,0 +1,84 @@
+/* 전체 컨테이너 스타일 */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  background-image: url('https://c.wallhere.com/photos/60/d0/1920x1200_px_anime_Pixel_Art_Pixels_pokemon_Pok_mon_Trainers-1244675.jpg!d');
+  margin-top: 30px;
+}
+
+
+
+
+
+.backButton {
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  padding: 5px 10px;
+  background: none;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  font-size: 25px;
+}
+
+
+.backbutton:hover {
+  background-color: #0056b3;
+}
+
+/* 유저 리스트 스타일 */
+ul {
+  list-style-type: none;
+
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 텍스트 강조 */
+strong {
+  color: #333;
+  font-weight: bold;
+}
+
+/* 버튼 스타일 */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+

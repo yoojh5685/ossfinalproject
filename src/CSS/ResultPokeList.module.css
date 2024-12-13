@@ -1,0 +1,33 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  background-image: url('https://c.wallhere.com/photos/60/d0/1920x1200_px_anime_Pixel_Art_Pixels_pokemon_Pok_mon_Trainers-1244675.jpg!d');
+  /* background-size: cover; 이미지를 컨테이너 크기에 맞게 늘림 */
+  background-repeat: repeat; /* 이미지 반복 방지 */
+  background-position: center top; /* 이미지 위치 조정 */
+  min-height: 100vh; 
+  margin-top: 30px;
+}
+
+
+
+
+.backButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  background: none;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  font-size: 25px;
+}
