@@ -31,7 +31,7 @@
 
 
 .backbutton:hover {
-  background-color: #0056b3;
+  background-color: #791917;
 }
 
 /* 유저 리스트 스타일 */
@@ -60,7 +60,7 @@ strong {
 
 /* 버튼 스타일 */
 button {
-  background-color: #007bff;
+  background-color: #e53935;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color:  #e53935;
 }
 
 button:disabled {

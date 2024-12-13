@@ -12,14 +12,16 @@ import Survey4 from '../components/Survey/Survey4';
 import Survey5 from '../components/Survey/Survey5';
 import Survey6 from '../components/Survey/Survey6';
 import Survey7 from '../components/Survey/Survey7';
+import ResultWrapper from '../components/ResultWrapper';
 import PokemonList from '../PokemonList';
+
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
         {/* <Route path='/' element={<PokemonList/>}/> */}
         <Route path='/' element={<Main/>} />
-        <Route path='/result' element={<Result/>}/>
+        <Route path='/result' element={<ResultWrapper/>}/>
         <Route path='/result_pokeList' element={<ResultPokeList/>}/>
         <Route path='/result_userList' element={<ResultUserList/>}/>
         <Route path='/major' element={<Major/>}/>

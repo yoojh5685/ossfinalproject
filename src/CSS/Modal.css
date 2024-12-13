@@ -45,7 +45,7 @@
 
 /* 버튼 스타일 */
 .modalContent button {
-  background-color: #007bff;
+  background-color:  #e53935;
   color: white;
   border: none;
   border-radius: 5px;
@@ -62,9 +62,9 @@
 
 /* 닫기 버튼 */
 .modalContent button:last-of-type {
-  background-color: #007bff; /* 닫기 버튼 색상 */
+  background-color:  #e53935; /* 닫기 버튼 색상 */
 }
 
 .modalContent button:last-of-type:hover {
-  background-color: #007bff;
+  background-color:  #e53935;
 }
