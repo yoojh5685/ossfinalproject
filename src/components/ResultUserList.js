@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import Modal from './Modal'; 
+import Modal from './Modal';
 import styles from '../CSS/ResultUserList.module.css';
 
 
@@ -11,7 +11,7 @@ export default function ResultUserList() {
   const [users, setUser] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { major, pokemonId,surveyData } = location.state || {};
+  const { major, pokemonId, surveyData } = location.state || {};
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
 
@@ -53,9 +53,9 @@ export default function ResultUserList() {
   const deleteButtonClicked = async (id) => {
     try {
       const confirmDelete = window.confirm('정말로 삭제하시겠습니까?');
-    if (!confirmDelete) {
-      return; 
-    }
+      if (!confirmDelete) {
+        return;
+      }
       await axios.delete('https://674c853a54e1fca9290cd1ff.mockapi.io/User/' + id)
       setUser(users.filter((user) => user.id !== id));
     } catch (error) {
@@ -110,8 +110,8 @@ export default function ResultUserList() {
         {users.map((user) => (
           <li key={user.id} className={styles.userCard}>
             <div>
-              <strong>전공:</strong> {user.major} <br />
               <strong>닉네임:</strong> {user.nickname} <br />
+              <strong>전공:</strong> {user.major} <br />
               <strong>ID:</strong> {user.id} <br />
             </div>
             <button onClick={() => openModal(user.id)} className={styles.button}>
